@@ -13,5 +13,15 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div *ngFor="let data of datastore">
+    <!-- <input [(value)]="data.idx">  DOES NOT WORK IN TWO WAY, equivalent of [value]-->
+      
+
+
+    <input [(ngModel)]="data.idx" #ngmodelvar="ngModel"> - <span> {{data.idx}}</span>   <!-- ngModel directive is AN INSTANCE and can be asigned to template variables .... used later in events-->
+    <input [value]="formatter(data.idx)" (change)="data.idx = changeFct($event.target.value)" required> - <span> {{data.idx}}</span>  <!-- formatter is called even after the (change) -->
+
+    <ion-button (click)="pressButton($event,ngmodelvar)"> press me</ion-button>  <!-- use template var with reference di directive -->
+  </div>
+
 </ion-content>

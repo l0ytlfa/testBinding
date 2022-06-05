@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,28 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  datastore: Array<object> = [];
+
+  constructor() {
+
+    for (let index = 0; index < 10; index++) {
+      this.datastore.push({idx:index});
+    }
+
+  }
+
+  pressButton(evt,ngmodelvar){
+    this.datastore.forEach((v)=>{
+      v['idx'] =  v['idx'] + 1;
+    });
+  }
+
+  formatter(val){
+    return val+1;
+  }
+
+  changeFct(val){
+    return parseInt(val, 10);
+  }
 
 }
